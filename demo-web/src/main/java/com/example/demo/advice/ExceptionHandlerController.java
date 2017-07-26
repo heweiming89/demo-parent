@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.alibaba.fastjson.JSON;
 import com.example.demo.web.AjaxResponse;
 
 @RestControllerAdvice
@@ -48,7 +47,7 @@ public class ExceptionHandlerController {
                 sb.append(defaultMessage);
             }
             ajaxResponse.setMessage(sb.toString());
-            logger.error(JSON.toJSONString(e, true));
+            return new ResponseEntity<AjaxResponse<Void>>(ajaxResponse, HttpStatus.BAD_REQUEST);
         } else if (e instanceof HttpRequestMethodNotSupportedException) {
             String requestUri = request.getRequestURI();
             String queryType = request.getMethod();
@@ -59,7 +58,7 @@ public class ExceptionHandlerController {
             ajaxResponse.setMessage(e.getMessage());
         }
 
-        return new ResponseEntity<AjaxResponse<Void>>(ajaxResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<AjaxResponse<Void>>(ajaxResponse, HttpStatus.INTERNAL_SERVER_ERROR); // TODO 根据异常细分返回状态码
     }
 
     @GetMapping(value = "/unauthorized")
