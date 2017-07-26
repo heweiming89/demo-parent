@@ -7,8 +7,8 @@ public abstract class BaseException extends Exception {
      */
     private static final long serialVersionUID = 1L;
 
-    private String errorCode;
-    private String message;
+    protected String errorCode;
+    protected String message;
 
     public BaseException(String errorCode, String message) {
         super();
