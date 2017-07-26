@@ -1,17 +1,16 @@
 package com.example.demo.config;
 
-import javax.sql.DataSource;
-
+import com.example.demo.constant.ConfigConstant;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -23,7 +22,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.example.demo.constant.ConfigConstant;
+import javax.sql.DataSource;
+import java.lang.reflect.Method;
+import java.util.concurrent.Executor;
 
 @Configuration
 @MapperScan(basePackages = {ConfigConstant.MAPPER_BASE_PACKAGES, ConfigConstant.DAO_BASE_PACKAGES})
@@ -36,7 +37,11 @@ import com.example.demo.constant.ConfigConstant;
 @EnableAspectJAutoProxy
 @EnableAsync
 @EnableScheduling
-public class SpringContextConfig implements TransactionManagementConfigurer {
+public class SpringContextConfig implements TransactionManagementConfigurer, AsyncConfigurer {
+    /**
+     * Logger for this class
+     */
+    private static final Logger logger = LoggerFactory.getLogger(SpringContextConfig.class);
 
     @SuppressWarnings("unused")
     @Autowired
@@ -52,11 +57,24 @@ public class SpringContextConfig implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public ThreadPoolTaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor(); // 异步线程池
-        taskExecutor.setCorePoolSize(5); // 核心线程数
-        taskExecutor.setMaxPoolSize(10); // 最大线程数
-        taskExecutor.setQueueCapacity(25); // 队列最大长度
-        return taskExecutor;
+    @Override
+    public Executor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor(); // 异步线程池
+        executor.setCorePoolSize(5); // 线程池维护线程的最少数量
+        executor.setKeepAliveSeconds(200); // 允许的空闲时间
+        executor.setMaxPoolSize(10); // 线程池维护线程的最大数量
+        executor.setQueueCapacity(20); // 缓存队列
+        return executor;
+    }
+
+    @Bean
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new AsyncUncaughtExceptionHandler() {
+            @Override
+            public void handleUncaughtException(Throwable ex, Method method, Object... params) {
+                logger.error(String.format("调用异步时发生意外错误 " + "方法 '%s'.", method), ex);
+            }
+        };
     }
 }
