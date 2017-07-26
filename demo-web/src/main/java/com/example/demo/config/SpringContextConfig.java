@@ -69,6 +69,6 @@ public class SpringContextConfig implements TransactionManagementConfigurer, Asy
     @Bean
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return (ex, method, params) -> logger.error(String.format("调用异步时发生意外错误 " + "方法 '%s'.", method), ex);
+        return (ex, method, params) -> logger.error(String.format("调用异步时发生意外错误 方法 '%s'.", method), ex);
     }
 }
