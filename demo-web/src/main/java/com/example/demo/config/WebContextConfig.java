@@ -1,16 +1,7 @@
 package com.example.demo.config;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +16,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -41,22 +31,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.example.demo.constant.ConfigConstant;
-import com.example.demo.enums.DisplayedEnum;
-import com.example.demo.web.json.serializer.DisplayedEnumSerializer;
-import com.example.demo.web.json.serializer.NullValueBeanSerializerModifier;
-import com.example.demo.web.json.serializer.XssStringJsonSerializer;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.std.NumberDeserializers.BigDecimalDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@Import(value = { RestTemplateConfig.class, Swagger2Config.class })
+@Import(value = { JacksonConfig.class, RestTemplateConfig.class, Swagger2Config.class })
 @ServletComponentScan(basePackages = ConfigConstant.LISTENER_BASE_PACKAGES)
 @EnableWebMvc // 启用 Spring MVC
 @ComponentScan(basePackages = { ConfigConstant.SCAN_BASE_PACKAGES }, useDefaultFilters = false, includeFilters = {
@@ -69,6 +50,13 @@ public class WebContextConfig extends WebMvcConfigurerAdapter {
     @SuppressWarnings("unused")
     @Autowired
     private Environment env;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
+    
+    @Autowired
+    private XmlMapper xmlMapper;
+    
 
     @Bean /* 文件上传配置 */
     public MultipartResolver multipartResolver() {
@@ -94,43 +82,18 @@ public class WebContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 
-        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        builder.indentOutput(true)//
-                .dateFormat(new SimpleDateFormat(ConfigConstant.DATE_TIME_FORMAT_PATTERN));
-        // .modulesToInstall(new ParameterNamesModule())
-        // builder.serializationInclusion(JsonInclude.Include.NON_NULL);
-
-        Map<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
-        serializers.put(DisplayedEnum.class, new DisplayedEnumSerializer());
-        serializers.put(LocalDate.class,
-                new LocalDateSerializer(DateTimeFormatter.ofPattern(ConfigConstant.DATE_FORMAT_PATTERN)));
-        serializers.put(LocalTime.class,
-                new LocalTimeSerializer(DateTimeFormatter.ofPattern(ConfigConstant.TIME_FORMAT_PATTERN)));
-        serializers.put(LocalDateTime.class,
-                new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(ConfigConstant.DATE_TIME_FORMAT_PATTERN)));
-        serializers.put(String.class, new XssStringJsonSerializer());
-
-        builder.serializersByType(serializers);
-
-        Map<Class<?>, JsonDeserializer<?>> deserializers = new LinkedHashMap<>();
-        deserializers.put(BigDecimal.class, new BigDecimalDeserializer());
-
-        builder.deserializersByType(deserializers);
-
         MappingJackson2HttpMessageConverter jsonHmc = new MappingJackson2HttpMessageConverter();
         jsonHmc.setSupportedMediaTypes(
                 Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON_UTF8, MediaType.TEXT_HTML));
-        ObjectMapper objectMapper = builder.build();
-        // 自定义null 序列化
-        objectMapper.setSerializerFactory(
-                objectMapper.getSerializerFactory().withSerializerModifier(new NullValueBeanSerializerModifier()));
+        ObjectMapper objectMapper = this.objectMapper;
+        
         jsonHmc.setObjectMapper(objectMapper);
         converters.add(jsonHmc);
 
         MappingJackson2XmlHttpMessageConverter xmlHmc = new MappingJackson2XmlHttpMessageConverter();
         xmlHmc.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_XML, MediaType.APPLICATION_ATOM_XML,
                 MediaType.APPLICATION_XHTML_XML, MediaType.TEXT_XML));
-        xmlHmc.setObjectMapper(builder.createXmlMapper(Boolean.TRUE).build());
+        xmlHmc.setObjectMapper(this.xmlMapper);
         converters.add(xmlHmc);
     }
 
