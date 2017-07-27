@@ -55,7 +55,7 @@ public class SpringContextConfig implements TransactionManagementConfigurer, Asy
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean
+    @Bean(name = "taskExecutor")
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor(); // 异步线程池
@@ -66,7 +66,7 @@ public class SpringContextConfig implements TransactionManagementConfigurer, Asy
         return executor;
     }
 
-    @Bean
+    @Bean(name = "asyncUncaughtExceptionHandler")
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (ex, method, params) -> logger.error(String.format("调用异步时发生意外错误 方法 '%s'.", method), ex);
