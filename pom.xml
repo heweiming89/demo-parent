@@ -17,6 +17,7 @@
         <module>demo-api</module>
         <module>demo-mock</module>
         <module>demo-web</module>
+        <module>demo-webjars</module>
     </modules>
 
     <properties>

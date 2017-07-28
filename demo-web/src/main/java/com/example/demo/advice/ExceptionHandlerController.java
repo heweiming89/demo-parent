@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestControllerAdvice
@@ -32,7 +33,7 @@ public class ExceptionHandlerController {
      * @return AjaxResponse
      */
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<AjaxResponse<Void>> exceptionHandler(Exception e, HttpServletRequest request) {
+    public ResponseEntity<AjaxResponse<Void>> exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
         AjaxResponse<Void> ajaxResponse = AjaxResponse.getInstance();
         ajaxResponse.setSuccess(Boolean.FALSE);
         logger.error("请求 {} 时发生异常 {} {}", request.getRequestURI(), e.getMessage(), e);
@@ -49,6 +50,7 @@ public class ExceptionHandlerController {
             String requestUri = request.getRequestURI();
             String queryType = request.getMethod();
             ajaxResponse.setMessage(requestUri + " 不支持 " + queryType + " 方式请求");
+            
             return new ResponseEntity<>(ajaxResponse, HttpStatus.METHOD_NOT_ALLOWED);
         } else {
             // 错误原因

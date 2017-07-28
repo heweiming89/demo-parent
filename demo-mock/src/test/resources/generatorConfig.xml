@@ -4,7 +4,7 @@
 
     <properties resource="mbg.properties" />
 
-    <classPathEntry location="" />
+    <classPathEntry location="D:/m2/repository/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar" />
 
     <context id="MyBatis3" targetRuntime="MyBatis3" defaultModelType="flat">
 
@@ -13,9 +13,9 @@
         <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="com.example.demo.mybatis.generator.plugins.CustomToStringPlugin" />
 
-        <commentGenerator type="com.banggood.scm.unsalable.mybatis.generator.CustomCommentGenerator">
+        <commentGenerator type="com.example.demo.mybatis.generator.CustomCommentGenerator">
             <property name="suppressChineseAllComments" value="false" />
             <property name="suppressAllComments" value="true" />
             <property name="suppressDate" value="true" />
@@ -37,7 +37,10 @@
 
         <javaClientGenerator targetPackage="${mapperPackage}" targetProject="${projectName}" type="XMLMAPPER" />
 
-        <table tableName=""></table>
+        <table tableName="cashier">
+
+
+        </table>
 
     </context>
 </generatorConfiguration>
