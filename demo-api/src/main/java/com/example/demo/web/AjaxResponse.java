@@ -1,15 +1,19 @@
 package com.example.demo.web;
 
-import java.time.LocalDateTime;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.LocalDateTime;
 
 @ApiModel(value = "AjaxResponse", description = "AjaxResponse模型")
 public class AjaxResponse<T> {
+
+    private AjaxResponse() {
+
+    }
 
     public static <T> AjaxResponse<T> getInstance() {
         return new AjaxResponse<>();
@@ -24,15 +28,11 @@ public class AjaxResponse<T> {
     @ApiModelProperty(value = "错误信息", dataType = "String", example = "请求成功", required = true)
     private String message;
 
-    @SuppressWarnings("unused")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private LocalDateTime dateTime;
-    
+
     @ApiModelProperty(value = "返回参数", dataType = "T", example = "", required = true)
     private T data;
-
-    private AjaxResponse() {
-
-    }
 
     public String getCode() {
         return code;
