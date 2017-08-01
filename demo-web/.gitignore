@@ -1,2 +1,6 @@
 /demo-web.iml
 /target/
+/.settings/
+/.classpath
+/.project
+/.idea

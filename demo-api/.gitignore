@@ -1,2 +1,6 @@
 /demo-api.iml
 /target/
+/.settings/
+/.classpath
+/.project
+/.idea

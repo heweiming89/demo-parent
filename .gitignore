@@ -1,2 +1,6 @@
 /demo-parent.iml
-/pom.xml
+/target/
+/.settings/
+/.classpath
+/.project
+/.idea

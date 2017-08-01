@@ -1,2 +1,6 @@
 /demo-mock.iml
 /target/
+/.settings/
+/.classpath
+/.project
+/.idea
