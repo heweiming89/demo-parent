@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>demo-parent</artifactId>
@@ -9,8 +9,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>1.5.6.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <modules>
@@ -19,6 +19,7 @@
         <module>demo-mock</module>
         <module>demo-web</module>
         <module>demo-webjars</module>
+        <module>demo-server</module>
     </modules>
 
     <properties>
@@ -27,7 +28,9 @@
         <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding><!-- 文件拷贝时的编码 -->
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${file.encoding}</maven.compiler.encoding><!-- 编译时的编码 -->
-        <spring-framework.version>4.3.9.RELEASE</spring-framework.version>
+        <spring-framework.version>4.3.10.RELEASE</spring-framework.version>
+		<spring-cloud-task.version>1.2.1.RELEASE</spring-cloud-task.version>
+		<spring-cloud.version>Dalston.SR2</spring-cloud.version>
         <spring-platform.version>Brussels-SR3</spring-platform.version>
         <spring-data.version>Ingalls-SR6</spring-data.version>
         <shiro.version>1.4.0</shiro.version>
@@ -64,6 +67,20 @@
                 <version>${spring-data.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-task-dependencies</artifactId>
+                <version>${spring-cloud-task.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.spring.platform</groupId>
