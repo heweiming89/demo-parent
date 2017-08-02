@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+import com.example.demo.util.ToStringUtils;
+
 /**
  * Created by heweiming on 2017/5/17.
  */
@@ -84,6 +86,11 @@ public class Page<T> {
 
     public void setRecoreds(List<T> recoreds) {
         this.recoreds = recoreds;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringUtils.toStringForJSONStyle(this);
     }
 
 }
