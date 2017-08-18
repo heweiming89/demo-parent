@@ -17,9 +17,10 @@
         <module>demo-common</module>
         <module>demo-api</module>
         <module>demo-mock</module>
-        <module>demo-web</module>
-        <module>demo-webjars</module>
         <module>demo-server</module>
+        <module>demo-webjars</module>
+        <module>demo-web</module>
+        <module>demo-console</module>
     </modules>
 
     <properties>
@@ -121,10 +122,6 @@
             <!--<failOnMissingWebXml>false</failOnMissingWebXml> -->
             <!--</configuration> -->
             <!--</plugin> -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 
