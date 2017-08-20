@@ -1,0 +1,21 @@
+server:
+  context-path: /console
+debug: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    formcontent:
+      putfilter:
+        enabled: true
+  thymeleaf:
+    mode: HTML
+    cache: false
+mybatis:
+  config-location: classpath:/config/mybatis-config.xml
+  mapper-locations:
+  - classpath:/mapper/*.xml
+  - classpath:/dao/*.xml

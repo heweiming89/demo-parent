@@ -1,0 +1,71 @@
+.portlet.light .dataTables_wrapper .dt-buttons {
+	margin-top: -4px !important;
+}
+
+.portlet.light .dataTables_wrapper .dataTables_length {
+	/* 	float: right !important; */
+	
+}
+
+.portlet.box .dataTables_wrapper .dt-buttons {
+	margin-top: 0px;
+}
+
+/* #blockUiBtn { */
+/* 	font-family: 'simple-line-icons' */
+/* } */
+
+/* #blockUiBtn:before { */
+/* 	content: "\e069  "; */
+/* } */
+.table-createBtn, .table-updateBtn, .table-deleteBtn {
+	
+}
+
+.form-horizontal .row>.col-md-4 {
+	padding-left: 0px !important;
+}
+
+.form-horizontal .row>.col-md-4 .col-md-3 {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.form-horizontal .row>.col-md-4 .col-md-4 {
+	padding-right: 0px !important;
+	text-align: center !important;
+	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+
+.form-horizontal .row>.col-md-4 .col-md-8 {
+	padding-left: 0px !important;
+}
+
+/* 弹窗位置 */
+/* @media (min-width: 768px) */
+/* .modal-dialog { */
+/*     margin: 75px auto !important; */
+/* } */
+.form-horizontal .has-feedback .form-control-feedback {
+	padding-top: 9px;
+}
+
+.modal-medium {
+	width: 800px !important;
+}
+
+.form-section {
+	margin-top: 10px !important;
+}
+
+.input-daterange .input-group-addon {
+	padding: 4px 4px !important;
+}
+
+.input-daterange input:nth-child(3) {
+	min-width: 98px !important;
+}
+
+.input-daterange input {
+	text-align: left !important;
+}

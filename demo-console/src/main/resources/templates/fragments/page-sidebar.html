@@ -1,0 +1,68 @@
+<div class="page-sidebar-wrapper" xmlns:th="http://www.thymeleaf.org">
+	<!-- END SIDEBAR -->
+	<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+	<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+	<div class="page-sidebar navbar-collapse collapse">
+		<!-- BEGIN SIDEBAR MENU -->
+		<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+		<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+		<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+		<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		<ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true"
+			data-slide-speed="200">
+
+			<li th:each="menu : ${#session.getAttribute('menuList')}" class="nav-item"><a th:href="@{*{menu.url}}" class="nav-link nav-toggle"> <i
+					th:class="*{menu.icon}"></i> <span class="title" th:text="*{menu.name}">一级菜单</span> <span class="selected"></span> <span class="arrow"></span>
+			</a>
+				<ul th:if="${#arrays.length(menu.subMenuList)} &gt 0" class="sub-menu">
+					<li th:each="subMenu : *{menu.subMenuList}" class="nav-item"><a th:href="@{*{subMenu.url}}" class="nav-link "> <i
+							th:class="*{subMenu.icon}"></i>&nbsp;&nbsp; <span th:text="*{subMenu.name}" class="title">二级菜单</span> <span class="selected"></span>
+					</a></li>
+				</ul></li>
+
+			<li class="nav-item start active open hidden"><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-settings"></i> <span
+					class="title">系统管理</span> <span class="selected"></span> <span class="arrow open"></span>
+			</a>
+				<ul class="sub-menu">
+					<li class="nav-item start active open"><a href="page_cookie_consent_1.html" class="nav-link "> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">用户管理</span> <span class="selected"></span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_cookie_consent_2.html" class="nav-link "> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">角色管理</span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_system_coming_soon.html" class="nav-link " target="_blank"> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">菜单管理</span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_system_404_1.html" class="nav-link "> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">权限管理</span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_system_404_2.html" class="nav-link " target="_blank"> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">登录日志</span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_system_404_3.html" class="nav-link " target="_blank"> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">操作日志</span>
+					</a></li>
+					<li class="nav-item hidden "><a href="page_system_500_1.html" class="nav-link "> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">会话管理</span>
+					</a></li>
+					<li class="nav-item  "><a href="page_system_500_2.html" class="nav-link " target="_blank"> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">名词字典</span>
+					</a></li>
+				</ul></li>
+
+			<li class="nav-item hidden"><a href="javascript:;" class="nav-link nav-toggle"> <i class="fa fa-sitemap"></i> <span class="title">&nbsp;组织架构</span>
+					<span class="selected"></span> <span class="arrow open"></span>
+			</a>
+				<ul class="sub-menu">
+					<li class="nav-item"><a href="page_cookie_consent_1.html" class="nav-link "> <i class="fa fa-picture-o"></i>&nbsp;&nbsp;<span
+							class="title">用户管理</span> <span class="selected"></span>
+					</a></li>
+				</ul></li>
+
+		</ul>
+		<!-- END SIDEBAR MENU -->
+	</div>
+	<!-- END SIDEBAR -->
+</div>
