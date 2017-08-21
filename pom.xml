@@ -21,6 +21,7 @@
         <module>demo-webjars</module>
         <module>demo-web</module>
         <module>demo-console</module>
+        <module>demo-angularjs</module>
     </modules>
 
     <properties>
@@ -30,8 +31,8 @@
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${file.encoding}</maven.compiler.encoding><!-- 编译时的编码 -->
         <spring-framework.version>4.3.10.RELEASE</spring-framework.version>
-		<spring-cloud-task.version>1.2.1.RELEASE</spring-cloud-task.version>
-		<spring-cloud.version>Dalston.SR2</spring-cloud.version>
+        <spring-cloud-task.version>1.2.1.RELEASE</spring-cloud-task.version>
+        <spring-cloud.version>Dalston.SR2</spring-cloud.version>
         <spring-platform.version>Brussels-SR3</spring-platform.version>
         <spring-data.version>Ingalls-SR6</spring-data.version>
         <shiro.version>1.4.0</shiro.version>
@@ -43,7 +44,10 @@
         <springfox.version>2.7.0</springfox.version>
         <fastjson.version>1.2.35</fastjson.version>
         <jackson-bom.version>2.8.9</jackson-bom.version>
-        <final-name>demo</final-name>
+        <!-- <final-name>demo</final-name> -->
+
+        <jquery.version>2.2.4</jquery.version>
+        <bootstrap.version>3.3.7-1</bootstrap.version>
     </properties>
 
     <dependencyManagement>
@@ -71,15 +75,15 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-task-dependencies</artifactId>
-                <version>${spring-cloud-task.version}</version>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <artifactId>spring-cloud-task-dependencies</artifactId>
+                <version>${spring-cloud-task.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
