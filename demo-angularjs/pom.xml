@@ -9,6 +9,11 @@
     <artifactId>demo-angularjs</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <final-name>angular</final-name>
+    </properties>
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -25,7 +30,7 @@
     </dependencyManagement>
 
     <dependencies>
-    <dependency>
+        <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>6.1.0.jre8</version><!--$NO-MVN-MAN-VER$ -->
@@ -127,7 +132,7 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
         </dependency>
-    
+
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>demo-api</artifactId>
@@ -139,5 +144,15 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${final-name}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

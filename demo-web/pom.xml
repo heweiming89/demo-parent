@@ -8,7 +8,7 @@
     <artifactId>demo-web</artifactId>
     
     <properties>
-        <final-name>demo</final-name>
+        <final-name>web</final-name>
     </properties>
 
     <dependencies>
