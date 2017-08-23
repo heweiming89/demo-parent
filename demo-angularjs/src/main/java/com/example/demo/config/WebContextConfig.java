@@ -109,6 +109,18 @@ public class WebContextConfig extends WebMvcConfigurerAdapter {
 			registry.addResourceHandler(webjarsPattern).addResourceLocations(webjarsLocations);
 		}
 
+		final String tplPattern = "/tpl/**";
+		final String tplLocations = "classpath:/templates/tpl/";
+		if (!registry.hasMappingForPattern(tplPattern)) {
+			registry.addResourceHandler(tplPattern).addResourceLocations(tplLocations);
+		}
+		
+		final String viewPattern = "/views/**";
+		final String viewLocations = "classpath:/templates/views/";
+		if (!registry.hasMappingForPattern(viewPattern)) {
+			registry.addResourceHandler(viewPattern).addResourceLocations(viewLocations);
+		}
+
 	}
 
 }
