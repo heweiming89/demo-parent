@@ -1,7 +1,7 @@
 debug: false
 server:
   port: 8080
-  context-path: /demo
+  context-path: /web
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -17,3 +17,5 @@ mybatis:
   mapper-locations:
   - classpath:/mapper/*.xml
   - classpath:/dao/*.xml
+flyway:
+  enabled: true

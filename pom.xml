@@ -22,6 +22,8 @@
         <module>demo-web</module>
         <module>demo-console</module>
         <module>demo-angularjs</module>
+        <module>demo-vue</module>
+        <module>demo-jpa</module>
     </modules>
 
     <properties>
@@ -30,10 +32,13 @@
         <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding><!-- 文件拷贝时的编码 -->
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${file.encoding}</maven.compiler.encoding><!-- 编译时的编码 -->
+        <logback.version>1.2.3</logback.version>
+        <tomcat.version>8.5.20</tomcat.version>
+        <flyway.version>4.2.0</flyway.version>
         <spring-framework.version>4.3.10.RELEASE</spring-framework.version>
         <spring-cloud-task.version>1.2.1.RELEASE</spring-cloud-task.version>
         <spring-cloud.version>Dalston.SR2</spring-cloud.version>
-        <spring-platform.version>Brussels-SR3</spring-platform.version>
+        <spring-platform.version>Brussels-SR4</spring-platform.version>
         <spring-data.version>Ingalls-SR6</spring-data.version>
         <shiro.version>1.4.0</shiro.version>
         <activiti.version>6.0.0</activiti.version>
@@ -94,6 +99,9 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 
