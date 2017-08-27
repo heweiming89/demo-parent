@@ -122,6 +122,9 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>${flyway.version}</version>
+                <!-- mvn flyway:init （初始化Flyway metadata ） -->
+                <!-- mvn flyway:migrate （执行Flyway 升级操作） -->
+                <!-- mvn flyway:validate （校验Flyway 数据正确性） -->
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
