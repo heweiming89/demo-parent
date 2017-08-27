@@ -125,6 +125,7 @@
                 <!-- mvn flyway:init （初始化Flyway metadata ） -->
                 <!-- mvn flyway:migrate （执行Flyway 升级操作） -->
                 <!-- mvn flyway:validate （校验Flyway 数据正确性） -->
+                <!-- mvn clean install flyway:migrate（清理，打包编译project） -->
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
@@ -148,9 +149,9 @@
                     <!-- 设置sql脚本文件的编码 -->
                     <encoding>UTF-8</encoding>
                     <!-- 设置执行migrate操作之前的validation行为 -->
-                    <validationMode>ALL</validationMode>
+                    <validateOnMigrate>true</validateOnMigrate>
                     <!-- 设置当validation失败时的系统行为 -->
-                    <validationErrorMode>FAIL</validationErrorMode>
+                    <cleanOnValidationError>false</cleanOnValidationError>
                 </configuration>
             </plugin>
             <plugin>
