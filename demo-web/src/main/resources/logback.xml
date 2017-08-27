@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
-<!--     <property name="log.pattern" value="%level  %date [%thread] %logger{36} %msg%n"/> -->
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n"/>
-    <property name="module.name" value="demo"/>
-    <property name="logBasePath" value="/logs"/>
-    <property name="maxHistory" value="10"/>
-    <property name="maxFileSize" value="10KB"/>
-    <property name="dev" value="info"/>
-    <property name="prod" value="error"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" />
+    <!-- <property name="log.pattern" value="%level %date [%thread] %logger{36} %msg%n"/> -->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n" />
+    <property name="module.name" value="web" />
+    <property name="logBasePath" value="/logs" />
+    <property name="maxHistory" value="10" />
+    <property name="maxFileSize" value="100MB" />
+    <property name="dev" value="info" />
+    <property name="prod" value="error" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -87,15 +87,15 @@
         </encoder>
     </appender>
 
-    <logger name="com.banggood.scm.unsalable.mapper" level="debug"/>
-    <logger name="com.banggood.scm.unsalable.dao" level="debug"/>
+    <logger name="com.banggood.scm.unsalable.mapper" level="debug" />
+    <logger name="com.banggood.scm.unsalable.dao" level="debug" />
 
     <root level="${dev}">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="file.all"/>
-        <appender-ref ref="file.all.daily"/>
-        <appender-ref ref="file.error"/>
-        <appender-ref ref="file.error.daily"/>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="file.all" />
+        <appender-ref ref="file.all.daily" />
+        <appender-ref ref="file.error" />
+        <appender-ref ref="file.error.daily" />
     </root>
 
 </configuration>
