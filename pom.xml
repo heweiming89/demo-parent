@@ -25,6 +25,7 @@
         <module>demo-vue</module>
         <module>demo-jpa</module>
         <module>demo-angular2</module>
+        <module>demo-javafx</module>
     </modules>
 
     <properties>
