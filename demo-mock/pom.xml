@@ -8,6 +8,10 @@
     </parent>
     <artifactId>demo-mock</artifactId>
 
+    <properties>
+        <final-name>mock</final-name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -40,6 +44,7 @@
     </dependencies>
 
     <build>
+        <finalName>${final-name}</finalName>
         <plugins>
             <plugin><!-- mvn mybatis-generator:generate -->
                 <groupId>org.mybatis.generator</groupId>
@@ -66,4 +71,5 @@
         </plugins>
     </build>
 
+    <packaging>war</packaging>
 </project>

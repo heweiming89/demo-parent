@@ -8,6 +8,10 @@
     </parent>
     <artifactId>demo-common</artifactId>
 
+    <properties>
+        <final-name>common</final-name>
+    </properties>
+
     <dependencies>
         <!-- SLF4J -->
         <dependency>
@@ -122,5 +126,9 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <finalName>${final-name}</finalName>
+    </build>
 
 </project>
