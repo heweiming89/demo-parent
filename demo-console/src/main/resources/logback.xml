@@ -6,7 +6,7 @@
     <property name="module.name" value="console" />
     <property name="logBasePath" value="/logs" />
     <property name="maxHistory" value="10" />
-    <property name="maxFileSize" value="10KB" />
+    <property name="maxFileSize" value="100MB" />
     <property name="dev" value="info" />
     <property name="prod" value="error" />
 

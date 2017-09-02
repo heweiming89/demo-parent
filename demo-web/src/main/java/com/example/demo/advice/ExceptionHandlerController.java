@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +51,11 @@ public class ExceptionHandlerController {
             String requestUri = request.getRequestURI();
             String queryType = request.getMethod();
             ajaxResponse.setMessage(requestUri + " 不支持 " + queryType + " 方式请求");
-            
             return new ResponseEntity<>(ajaxResponse, HttpStatus.METHOD_NOT_ALLOWED);
+        } else if (e instanceof IllegalStateException || e instanceof IllegalArgumentException) {
+            return new ResponseEntity<>(ajaxResponse.withMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
+        } else if (e instanceof HttpMediaTypeNotSupportedException) {
+            return new ResponseEntity<>(ajaxResponse.withMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
         } else {
             // 错误原因
             ajaxResponse.setMessage(e.getMessage());
