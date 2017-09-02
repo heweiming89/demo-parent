@@ -1,4 +1,4 @@
-# 我是开发环境
+# 我是测试环境
 debug: true
 server:
   port: 8080

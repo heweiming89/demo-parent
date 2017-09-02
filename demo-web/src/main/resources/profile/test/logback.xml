@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <!-- # 我是开发环境 -->
+    <!-- # 我是测试环境 -->
     <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" />
     <!-- <property name="log.pattern" value="%level %date [%thread] %logger{36} %msg%n"/> -->
     <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-40.40logger{39} : %m%n" />

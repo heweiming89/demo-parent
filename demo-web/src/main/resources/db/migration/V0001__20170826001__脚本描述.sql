@@ -4,3 +4,5 @@ CREATE TABLE `user` (
   `age` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into user(id, username) values(1, "张三");
