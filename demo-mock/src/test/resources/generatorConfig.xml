@@ -16,19 +16,22 @@
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
 
-        <!-- <plugin type="com.example.demo.mybatis.generator.plugins.CustomToStringPlugin" /> -->
+        <plugin type="com.example.demo.mybatis.generator.plugins.CustomToStringPlugin" />
+
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
+            <property name="suppressChineseAllComments" value="false" />
+            <property name="suppressAllComments" value="false" />
+            <property name="addRemarkComments" value="true" />
+            <property name="suppressDate" value="false" />
+        </commentGenerator>
 
         <!-- <commentGenerator type="com.example.demo.mybatis.generator.CustomCommentGenerator"> -->
         <!-- <property name="suppressChineseAllComments" value="false" /> -->
-        <!-- <property name="suppressAllComments" value="true" /> -->
-        <!-- <property name="suppressDate" value="true" /> -->
-        <!-- </commentGenerator> -->
-
-        <!-- <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator"> -->
-        <!-- <property name="suppressChineseAllComments" value="false" /> -->
         <!-- <property name="suppressAllComments" value="false" /> -->
+        <!-- <property name="addRemarkComments" value="true" /> -->
         <!-- <property name="suppressDate" value="false" /> -->
         <!-- </commentGenerator> -->
+
 
         <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}"
             password="${jdbc.password}">
