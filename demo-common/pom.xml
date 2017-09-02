@@ -64,13 +64,13 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.4</version>
+            <version>${mybatis.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-typehandlers-jsr310</artifactId>
-            <version>1.0.2</version>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>${mybatis-generator.version}</version>
         </dependency>
 
         <dependency>
@@ -107,7 +107,7 @@
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>woodstox-core-asl</artifactId>
         </dependency>
-        
+
         <!--SpringFox dependencies -->
         <dependency>
             <groupId>io.springfox</groupId>
