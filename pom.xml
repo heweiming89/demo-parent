@@ -24,7 +24,7 @@
         <module>demo-angularjs</module>
         <module>demo-vue</module>
         <module>demo-jpa</module>
-        <module>demo-angular2</module>
+        <module>demo-angular</module>
         <module>demo-javafx</module>
         <module>demo-activiti</module>
     </modules>
