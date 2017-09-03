@@ -26,6 +26,7 @@
         <module>demo-jpa</module>
         <module>demo-angular2</module>
         <module>demo-javafx</module>
+        <module>demo-activiti</module>
     </modules>
 
     <properties>
