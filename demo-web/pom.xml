@@ -11,6 +11,7 @@
 
     <properties>
         <final-name>web</final-name>
+        <profile.exclude.flyway />
     </properties>
 
     <dependencyManagement>
