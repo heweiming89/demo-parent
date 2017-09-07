@@ -25,6 +25,8 @@
         <module>demo-javafx</module>
         <module>demo-activiti</module>
         <module>demo-portal</module>
+        <module>demo-monolith</module>
+        <module>demo-dubbo</module>
     </modules>
 
     <properties>
