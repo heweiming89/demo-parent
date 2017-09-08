@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-@Import(value = {JacksonConfig.class, RestTemplateConfig.class, Swagger2Config.class})
+@Import(value = {JacksonConfig.class, RestTemplateConfig.class, Swagger2Config.class, ServletConfig.class})
 @ServletComponentScan(basePackages = ConfigConstant.LISTENER_BASE_PACKAGES)
 @EnableWebMvc // 启用 Spring MVC
 @ComponentScan(basePackages = {ConfigConstant.SCAN_BASE_PACKAGES}, useDefaultFilters = false, includeFilters = {
