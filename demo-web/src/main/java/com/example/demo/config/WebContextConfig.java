@@ -94,5 +94,22 @@ public class WebContextConfig extends WebMvcConfigurerAdapter {
         registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true).maxAge(TimeUnit.DAYS.toMillis(1));
     }
+    
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+		final String staticPattern = "/static/**";
+		final String staticLocations = "classpath:/static/";
+		if (!registry.hasMappingForPattern(staticPattern)) {
+			registry.addResourceHandler(staticPattern).addResourceLocations(staticLocations);
+		}
+
+		final String webjarsPattern = "/webjars/**";
+		final String webjarsLocations = "classpath:/META-INF/resources/webjars/";
+		if (!registry.hasMappingForPattern(webjarsPattern)) {
+			registry.addResourceHandler(webjarsPattern).addResourceLocations(webjarsLocations);
+		}
+		
+	} 
 
 }
