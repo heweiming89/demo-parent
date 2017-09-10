@@ -19,7 +19,7 @@ import com.example.demo.web.AjaxResponse;
 @RestController
 public class HelloWorldController {
 
-	@GetMapping(value = "/hello")
+	@GetMapping(value = "/api/hello")
 	public ResponseEntity<AjaxResponse<Map<String, Object>>> helloWorld() {
 		AjaxResponse<Map<String, Object>> ajaxResponse = AjaxResponse.getInstance();
 		Map<String, Object> data = new HashMap<>();

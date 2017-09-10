@@ -20,7 +20,8 @@
 		<module>demo-server</module>
 		<module>demo-web</module>
 		<module>demo-javafx</module>
-		<module>demo-angular</module>
+		<module>demo-console</module>
+		<module>demo-portal</module>
 	</modules>
 
 	<prerequisites>

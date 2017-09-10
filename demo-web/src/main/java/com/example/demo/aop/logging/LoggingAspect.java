@@ -1,6 +1,6 @@
 package com.example.demo.aop.logging;
 
-import io.github.jhipster.config.JHipsterConstants;
+import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,8 +11,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
-
-import java.util.Arrays;
 
 /**
  * Aspect for logging execution of service and repository Spring components.
@@ -43,9 +41,9 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all Spring beans in the application's main packages.
      */
-    @Pointcut("within(com.example.demo.repository..*)"+
-        " || within(com.example.demo.service..*)"+
-        " || within(com.example.demo.web.rest..*)")
+    @Pointcut("within(com.merlion.studentloan.repository..*)"+
+        " || within(com.merlion.studentloan.service..*)"+
+        " || within(com.merlion.studentloan.web.rest..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
@@ -58,7 +56,7 @@ public class LoggingAspect {
      */
     @AfterThrowing(pointcut = "applicationPackagePointcut() && springBeanPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) {
+        if (env.acceptsProfiles("dev")) {
             log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'", joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(), e.getCause() != null? e.getCause() : "NULL", e.getMessage(), e);
 
